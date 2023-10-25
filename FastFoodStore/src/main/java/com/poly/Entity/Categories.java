@@ -2,6 +2,8 @@ package com.poly.Entity;
 
 import java.io.Serializable;
 
+import org.springframework.stereotype.Component;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,19 +18,21 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Component
 @Table(name = "Categories")
 public class Categories implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
-    private Long categoryID;
+    private Long categoryId;
 
     @Column(name = "name", columnDefinition = "NVARCHAR(50)")
-    private String userName;
+    private String Name;
 
     @Column(name = "desciption", columnDefinition = "NVARCHAR(800)")
-    private String Desciption;
+    private String Description;
 
     @Column(name = "image_url", columnDefinition = "NVARCHAR(100)")
     private String Image_url;
+
 }

@@ -10,5 +10,7 @@ import com.poly.Entity.Products;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Products, Long> {
-    List<Products> findByCategories(Categories categories);
+
+    List<Products> findByCategories(Categories categoryId);
+
 }
