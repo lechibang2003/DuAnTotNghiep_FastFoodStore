@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="zlayout/fragments :: html_head"></head>
-
-<link rel="stylesheet" href="/assets/css_main/product_detail.css">
+<head th:replace="~{zlayout/fragments :: html_head}"></head>
+<base th:href="@{../}">
+<link rel="stylesheet" th:href="@{../assets/css_main/product_detail.css}">
 
 <body>
-    <div th:replace="zlayout/loadAndCartSmall :: loader"></div>
+    <div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
 
-    <div th:replace="zlayout/loadAndCartSmall :: cartSmall"></div>
+    <div th:replace="~{zlayout/loadAndCartSmall :: cartSmall}"></div>
 
     <div class="containerr ">
         <div class="image_big">
             <div class="image-one"></div>
             <div class="image-three"></div>
             <div class="image-two">
-                <img src="/assets/images/leaves.png" alt="leaves.png" class="food2">
+                <img src="../assets/images/leaves.png" alt="leaves.png" class="food2">
                 <nav class="navb navbar-expand-lg navbar-light bg-light" th:replace="zlayout/navbar :: menu"></nav>
 
                 <header class="banner-big">
@@ -25,7 +25,7 @@
                                 <div class="container col-md-12">
                                     <div class="col">
                                         <div class="title">
-                                            <p>CLASSIC BURGER</p>
+                                            <p th:text="${product.name}" class="text-uppercase"></p>
                                         </div>
                                         <div class="danhgia mb-1">
                                             <div class="star">
@@ -47,10 +47,12 @@
                                             <input type="button" class="sosize mx-1" value="L">&nbsp;
                                         </div>
                                         <div class="gia mt-4">
-                                            <span class="text-gach text-decoration-line-through">85.000₫</span>
+                                            <span>Giá</span>&nbsp;&nbsp;&nbsp;
+                                            <span class="text-gach text-decoration-line-through"
+                                                th:text="${product.prices} + '$'"></span>
                                             &nbsp;
-                                            <span class="price">65.000₫ -
-                                                79.000₫</span>&nbsp; &nbsp;
+                                            <span class="price" th:text="${product.price} + '$'"></span>&nbsp;
+                                            &nbsp;
                                             <!-- <span class="giamgia">50% GIẢM</span> -->
                                         </div>
                                         <div class="soluong mt-4 mb-4">
@@ -64,33 +66,30 @@
                                             </span>
                                         </div>
                                         <div class="cart-buy-item">
-                                            <a href="/page/user/cart.html"><button class="button-cart"><i
+                                            <a th:href="@{cart}"><button class="button-cart"><i
                                                         class="bi bi-cart-plus"></i>
                                                     Thêm Giỏ
                                                     Hàng</button></a>
-                                            <a href="/page/user/payment_method.html"><button class="button-buy">Mua
+                                            <a th:href="@{payment}"><button class="button-buy">Mua
                                                     Ngay</button> </a>
                                         </div>
                                     </div>
-                                </div>
                             </section>
                         </aside>
-                        <p class="tieude"></p>
+
                         <article>
-                            <iframe src="/assets/images/hamburger_banner.png" frameborder="0" class="if-image"
-                                name="if-image">
-                                <img src="/assets/images/hamburger_banner.png" alt="about-banner" class="img-food">
+                            <iframe th:src="@{'/assets/images/img_product/' + ${product.image}}" frameborder="0"
+                                class="if-image" name="if-image">
+                                <img th:src="@{'/assets/images/img_product/' + ${product.image}}" alt="about-banner"
+                                    class="img-food">
                             </iframe>
                             <div class="ifarm-images">
-                                <a href="/assets/images/hamburger_banner.png" target="if-image"><img
-                                        src="/assets/images/hamburger_banner.png" alt="">
-                                </a>
-                                <a href="/assets/images/hamburger_banner1.png" target="if-image"><img
-                                        src="/assets/images/hamburger_banner1.png" alt="">
-                                </a>
-                                <a href="/assets/images/hamburger_banner2.png" target="if-image"><img
-                                        src="/assets/images/hamburger_banner2.png" alt="">
-                                </a>
+                                <div th:each="image : ${images}">
+                                    <a th:href="@{'/assets/images/img_product/' + ${image.url_Img}}" target="if-image">
+                                        <img th:src="@{'/assets/images/img_product/' + ${image.url_Img}}"
+                                            alt="anhSpham">
+                                    </a>
+                                </div>
                             </div>
                         </article>
                     </div>
@@ -181,44 +180,6 @@
                                 </span><br>
                                 <span>Một Số Hình Ảnh: </span>
                                 <br><br><br> <br>
-
-                                <div id="carouselExampleDark" class="carousel carousel-white slide">
-                                    <div class="carousel-indicators">
-                                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0"
-                                            class="active" aria-current="true" aria-label="Slide 1"></button>
-                                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
-                                            aria-label="Slide 2"></button>
-                                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-                                            aria-label="Slide 3"></button>
-                                    </div>
-                                    <div class="carousel-inner d-flex">
-                                        <div class="carousel-item active" data-bs-interval="1000">
-                                            <img src="/assets/images/hamburger_banner.png" class="d-block" alt="hi">
-                                            <div class="carousel-caption d-none d-md-block">
-                                            </div>
-                                        </div>
-                                        <div class="carousel-item" data-bs-interval="2000">
-                                            <img src="/assets/images/hamburger_banner1.png" class="d-block" alt="hi">
-                                            <div class="carousel-caption d-none d-md-block">
-                                            </div>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="/assets/images/hamburger_banner2.png" class="d-block" alt="hi">
-                                            <div class="carousel-caption d-none d-md-block">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="carousel-control-prev" type="button"
-                                        data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">lui</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button"
-                                        data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">tiếp</span>
-                                    </button>
-                                </div>
                             </div>
                             <div class="xemthem" data-bs-toggle="collapse" data-bs-target="#demo">
                                 <span>more</span>
@@ -422,8 +383,8 @@
                 </div>
             </div>
             <img class="myimage" src="/assets/images/food4.png" alt="food4">
-            
-            <div class="footer" th:replace="zlayout/footer :: footer"></div>
+
+            <div class="footer" th:replace="~{zlayout/footer :: footer}"></div>
         </div>
 
         <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>

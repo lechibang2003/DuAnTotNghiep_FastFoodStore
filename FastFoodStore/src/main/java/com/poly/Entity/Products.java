@@ -24,7 +24,7 @@ public class Products implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
-    private Long productID;
+    private Long productId;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -36,8 +36,14 @@ public class Products implements Serializable {
     @Column(name = "price")
     private Float Price;
 
-    @Column(name = "description", columnDefinition = "NVARCHAR(800)")
+    @Column(name = "prices")
+    private Float Prices;
+
+    @Column(name = "description", columnDefinition = "NVARCHAR(MAX)")
     private String Description;
+
+    @Column(name = "description_an", columnDefinition = "NVARCHAR(MAX)")
+    private String Description_an;
 
     @Column(name = "quantity")
     private Float Quantity;
@@ -59,4 +65,8 @@ public class Products implements Serializable {
 
     @Column(name = "views")
     private Integer Views;
+
+    public Long getId() {
+        return productId;
+    }
 }

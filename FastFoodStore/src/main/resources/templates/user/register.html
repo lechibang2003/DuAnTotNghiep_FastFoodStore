@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="zlayout/fragments :: html_head"></head>
+<head th:replace="~{zlayout/fragments :: html_head}"></head>
 <!-- rerister and login -->
 <link id="pagestyle" href="/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/css_main/register.css">
 <!-- end -->
 
 <body>
-  <div th:replace="zlayout/loadAndCartSmall :: loader"></div>
 
   <!-- Navbar -->
-  <nav th:replace="zlayout/navbar :: menu_res"></nav>
+  <nav th:replace="~{zlayout/navbar :: menu_res}"></nav>
   <!-- End Navbar -->
   <main class="main-content mt-0 mb-0">
     <div class="page-header align-items-start min-vh-50 pt-5 pb-11">

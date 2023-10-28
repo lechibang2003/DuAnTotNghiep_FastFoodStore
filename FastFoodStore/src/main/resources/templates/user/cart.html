@@ -1,34 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Yummy</title>
-
-    <link rel="stylesheet" href="/assets/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/css/aos.css">
-    <link rel="stylesheet" href="/assets/fontawesome-free-6.4.0-web/css/all.css">
-    <link rel="shortcut icon" href="/assets/images/banner_pizza.png" type="image/x-icon">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-
-    <!----===== Boxicons CSS ===== -->
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="/assets/css_main/cart.css">
-
-</head>
-
+<head th:replace="~{zlayout/fragments :: html_head}"></head>
+<link rel="stylesheet" th:href="@{../assets/css_main/cart.css}">
 
 <body>
 
-    <div th:replace="zlayout/loadAndCartSmall :: loader"></div>
+    <div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
 
-    <div th:replace="zlayout/loadAndCartSmall :: cartSmall"></div>
+    <div th:replace="~{zlayout/loadAndCartSmall :: cartSmall}"></div>
     <div class="containerr ">
         <div class="image_big">
             <div class="image-one"></div>
@@ -134,7 +114,7 @@
                 </header>
             </div>
 
-            <div class="footer" th:replace="zlayout/footer :: footer"></div>
+            <div class="footer" th:replace="~{zlayout/footer :: footer}"></div>
         </div>
 
         <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>

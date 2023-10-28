@@ -743,7 +743,6 @@ header .girdd {
 footer {
   position: relative;
   top: 0;
-  z-index: -1;
   background: var(--body-color);
   margin-left: 5%;
   margin-top: 70px;

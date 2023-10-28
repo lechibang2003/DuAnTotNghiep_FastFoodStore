@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.poly.Dao.CategoryDao;
 import com.poly.Entity.Categories;
+import com.poly.Entity.Image_product;
 import com.poly.Entity.Products;
 import com.poly.Reponsitory.ProductRepository;
 
@@ -16,10 +18,20 @@ import jakarta.transaction.Transactional;
 public class ProductService {
 
     @Autowired
-    private static ProductRepository productrepo;
+    private ProductRepository productrepo;
+
+    // @Autowired
+    // private final ProductRepository productRepository;
 
     @Autowired
-    Categories categories;
+    private CategoryDao categoryDao;
+
+    @Autowired
+    private ImageProductService imageProductService;
+
+    // public ProductService(ProductRepository productRepository) {
+    //     this.productRepository = productRepository;
+    // }
 
     public List<Products> listAll() {
         return productrepo.findAll();
@@ -37,8 +49,20 @@ public class ProductService {
         productrepo.deleteById(id);
     }
 
-    public List<Products> getProductByCategoryId(Categories categoryId) {
-        return productrepo.findByCategories(categoryId);
+    // public List<Products> getProductByCategoryId(Categories category) {
+    //     return productRepository.findByCategories(category);
+    // }
+
+    public List<Categories> getDataCategorys() {
+        return categoryDao.getDataCategorys();
+    }
+
+    public Products getProductById(Long iddetail) {
+        return productrepo.findById(iddetail).get();
+    }
+
+    public List<Image_product> getImagesByProductId(Long productId) {
+        return imageProductService.getImagesByProductId(productId);
     }
 
 }

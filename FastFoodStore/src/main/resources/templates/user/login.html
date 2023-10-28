@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="zlayout/fragments :: html_head"></head>
+<head th:replace="~{zlayout/fragments :: html_head}"></head>
 <!-- rerister and login -->
 <link id="pagestyle" href="/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/css_main/login.css">
@@ -9,7 +9,7 @@
 
 <body>
 
-  <div th:replace="zlayout/loadAndCartSmall :: loader"></div>
+  <div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
 
   <div class="container position-sticky z-index-sticky top-0">
     <div class="row">

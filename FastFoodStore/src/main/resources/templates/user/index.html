@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="zlayout/fragments :: html_head"></head>
+<head th:replace="~{zlayout/fragments :: html_head}"></head>
 <link rel="stylesheet" th:href="@{../assets/css_main/main.css}">
 
 <body>
-	<div th:replace="zlayout/loadAndCartSmall :: loader"></div>
+	<div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
 
-	<div th:replace="zlayout/loadAndCartSmall :: cartSmall"></div>
+	<div th:replace="~{zlayout/loadAndCartSmall :: cartSmall}"></div>
 
-	<div class="containerr ">
+	<div class="containerr">
 		<div class="image_big">
 			<div class="image-one"></div>
 			<div class="image-three"></div>
 			<div class="image-two">
 				<img src="/assets/images/leaves.png" alt="leaves.png" class="food2">
-				<nav class="navb navbar-expand-lg navbar-light bg-light" th:replace="zlayout/navbar :: menu"></nav>
+				<nav class="navb navbar-expand-lg navbar-light bg-light" th:replace="~{zlayout/navbar :: menu}"></nav>
 
 				<header class="banner-big">
 					<aside>
@@ -159,7 +159,7 @@
 				<!-- end -->
 			</div>
 			<img class="myimage" src="/assets/images/food4.png" alt="food4">
-			<section id="menu-food" layout:fragment="content">
+			<section id="menu-food">
 				<div class="image-five">
 					<h2>Menu Món Ăn</h2>
 					<ul class="nav nav-tabs tabpanel border-bottom-0 justify-content-center flex-wrap" id="myTab"
@@ -194,7 +194,6 @@
 								aria-controls="trmieng-tab-pane" aria-selected="false">Tráng
 								Miệng</button>
 						</li>
-
 					</ul>
 
 					<div class="tab-content" id="myTabContent">
@@ -205,7 +204,8 @@
 								<div th:each="item : ${ListProduct}">
 									<div class="card">
 										<div class="card-body">
-											<a th:href="@{user/productDetail?id=${item.productID}}" class="text-black">
+											<a th:href="@{/user/productDetail/{productId}(productId=${item.productId})}"
+												class="text-black">
 												<img class="card-img-top"
 													th:src="@{'/assets/images/img_product/' + ${item.image}}"
 													alt="food-menu" />
@@ -259,7 +259,7 @@
 						<section class="tab-pane fade" id="pizza-tab-pane" role="tabpanel" aria-labelledby="pizza-tab"
 							tabindex="0">
 							<div class="card-group justify-content-center" style="gap: 100px;">
-								<div th:each="product : ${productList}">
+								<div th:each="product : ${ListProduct}">
 									<div class="card">
 										<div class=" card-body">
 											<a href="/page/user/product_detail.html" class="text-black">
@@ -295,14 +295,14 @@
 						<section class="tab-pane fade" id="burger-tab-pane" role="tabpanel" aria-labelledby="burger-tab"
 							tabindex="0">
 							<div class="card-group justify-content-center" style="gap: 100px;">
-								<div th:each="product : ${productList}" th:if="${categoryId == 1}">
+								<div th:each="product : ${ListProduct}">
 									<div class="card">
-										<div class="card-body">
+										<div class=" card-body">
 											<a href="/page/user/product_detail.html" class="text-black">
 												<img class="card-img-top"
 													th:src="@{'/assets/images/img_product/' + ${product.image}}"
 													alt="food-menu">
-												<div class="title" th:text="product.name"></div>
+												<div class="title" th:text="${product.name}"></div>
 											</a>
 											<div class="quantity">
 												View: <small style="font-weight: initial;">253</small>
@@ -322,7 +322,6 @@
 											<a href="#1"> <span class="cart-sp4"> <i class="bi bi-cart3"></i>
 												</span>
 											</a>
-
 										</div>
 									</div>
 								</div>
@@ -332,31 +331,34 @@
 						<section class="tab-pane fade" id="my-tab-pane" role="tabpanel" aria-labelledby="my-tab"
 							tabindex="0">
 							<div class="card-group justify-content-center" style="gap: 100px;">
-								<div class="card">
-									<div class="card-body">
-										<a href="/page/user/product_detail.html" class="text-black">
-											<img class="card-img-top" src="/assets/images/main_img.png" alt="food-menu">
-											<div class="title">Hamburger</div>
-										</a>
-										<div class="quantity">
-											View: <small style="font-weight: initial;">253</small>
+								<div th:each="product : ${ListProduct}">
+									<div class="card">
+										<div class=" card-body">
+											<a href="/page/user/product_detail.html" class="text-black">
+												<img class="card-img-top"
+													th:src="@{'/assets/images/img_product/' + ${product.image}}"
+													alt="food-menu">
+												<div class="title" th:text="${product.name}"></div>
+											</a>
+											<div class="quantity">
+												View: <small style="font-weight: initial;">253</small>
+											</div>
+											<div class="evaluate">
+												<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-half"></i>
+											</div>
+											<div class="price" th:text="'Price: ' + ${product.price} + '$'"></div>
+											<div class="share">
+												<i class="bi bi-share"></i>
+											</div>
+											<div class="tym">
+												<i class="bi bi-heart-fill"></i>
+											</div>
+											<a href="#1"> <span class="cart-sp4"> <i class="bi bi-cart3"></i>
+												</span>
+											</a>
 										</div>
-										<div class="evaluate">
-											<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-half"></i>
-										</div>
-										<div class="price">3$</div>
-										<div class="share">
-											<i class="bi bi-share"></i>
-										</div>
-										<div class="tym">
-											<i class="bi bi-heart-fill"></i>
-										</div>
-										<a href="#1"> <span class="cart-sp4"> <i class="bi bi-cart3"></i>
-											</span>
-										</a>
-
 									</div>
 								</div>
 							</div>
@@ -365,31 +367,34 @@
 						<section class="tab-pane fade" id="trmieng-tab-pane" role="tabpanel"
 							aria-labelledby="trmieng-tab" tabindex="0">
 							<div class="card-group justify-content-center" style="gap: 100px;">
-								<div class="card">
-									<div class="card-body">
-										<a href="/page/user/product_detail.html" class="text-black">
-											<img class="card-img-top" src="/assets/images/main_img.png" alt="food-menu">
-											<div class="title">Hamburger</div>
-										</a>
-										<div class="quantity">
-											View: <small style="font-weight: initial;">253</small>
+								<div th:each="product : ${ListProduct}">
+									<div class="card">
+										<div class=" card-body">
+											<a href="/page/user/product_detail.html" class="text-black">
+												<img class="card-img-top"
+													th:src="@{'/assets/images/img_product/' + ${product.image}}"
+													alt="food-menu">
+												<div class="title" th:text="${product.name}"></div>
+											</a>
+											<div class="quantity">
+												View: <small style="font-weight: initial;">253</small>
+											</div>
+											<div class="evaluate">
+												<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-half"></i>
+											</div>
+											<div class="price" th:text="'Price: ' + ${product.price} + '$'"></div>
+											<div class="share">
+												<i class="bi bi-share"></i>
+											</div>
+											<div class="tym">
+												<i class="bi bi-heart-fill"></i>
+											</div>
+											<a href="#1"> <span class="cart-sp4"> <i class="bi bi-cart3"></i>
+												</span>
+											</a>
 										</div>
-										<div class="evaluate">
-											<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-											<i class="bi bi-star-half"></i>
-										</div>
-										<div class="price">3$</div>
-										<div class="share">
-											<i class="bi bi-share"></i>
-										</div>
-										<div class="tym">
-											<i class="bi bi-heart-fill"></i>
-										</div>
-										<a href="#1"> <span class="cart-sp4"> <i class="bi bi-cart3"></i>
-											</span>
-										</a>
-
 									</div>
 								</div>
 							</div>
@@ -398,14 +403,13 @@
 				</div>
 			</section>
 
-			<div class="footer" th:replace="zlayout/footer :: footer"></div>
+			<div class="footer" th:replace="~{zlayout/footer :: footer}"></div>
 		</div>
 
 		<a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>
 	</div>
 
 
-	<!-- <script src="assets/js/angular.min.js"></script> -->
 	<script src="../assets/js/jquery.min.js"></script>
 	<script src="../assets/js/bootstrap.min.js"></script>
 	<script src="../assets/fontawesome-free-6.4.0-web/js/all.js"></script>
