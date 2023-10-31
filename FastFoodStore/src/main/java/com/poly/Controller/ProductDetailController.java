@@ -31,6 +31,11 @@ public class ProductDetailController {
 
         List<Image_product> images = imageProductService.getImagesByProductId(iddetail);
         model.addAttribute("images", images);
+
+        productService.increaseViewCount(iddetail);
+        Products product = productService.getProductById(iddetail);
+        productService.Save(product);
+
         return "user/product_detail";
     }
 }

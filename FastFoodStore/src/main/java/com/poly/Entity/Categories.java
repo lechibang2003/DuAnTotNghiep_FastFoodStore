@@ -1,7 +1,6 @@
 package com.poly.Entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -36,4 +35,11 @@ public class Categories implements Serializable {
     @Column(name = "image_url", columnDefinition = "NVARCHAR(100)")
     private String Image_url;
 
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
 }
